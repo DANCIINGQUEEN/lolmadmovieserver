@@ -23,7 +23,8 @@ var mongoose = require('mongoose')
 let corsOptions={
     origin:[
         'https://lolmadmovie.vercel.app/upload',
-        'http://localhost:3000'
+        'http://localhost:3000',
+        'https://lolmadmovie.vercel.app/videolink2'
     ],
     credentials:true
 }
