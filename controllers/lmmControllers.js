@@ -28,13 +28,6 @@ const LmmControl = {
         })
     },
     getAll: (req, res) => {
-        // const name=await LmmStatic.findAll()
-        // try{
-        //     res.send(name)
-        //     if(!name) return res.status(404).json({'fail':"not found"})
-        // }catch(err){
-        //     res.status(500).json({'fail':"not found"})
-        // }
         Lmm.find((err, data) => {
                 if (err) {
                     res.status(500).send(err)

@@ -5,10 +5,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors=require('cors')
 require('./models/db')
+require('./models/videoList')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var lolRouter = require('./routes/lol')
+var playListRouter=require('./routes/playListRoutes');
 
 var app = express();
 var mongoose = require('mongoose')
@@ -19,7 +21,10 @@ var mongoose = require('mongoose')
 // app.use(bodyParser.json())
 
 let corsOptions={
-    origin:'https://lolmadmovie.vercel.app/upload',
+    origin:[
+        'https://lolmadmovie.vercel.app/upload',
+        'http://localhost:3000'
+    ],
     credentials:true
 }
 app.use(cors(corsOptions))
@@ -64,6 +69,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/users', usersRouter);
 app.use('/', indexRouter)
 app.use('/lol', lolRouter)
+app.use('/playlist', playListRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
