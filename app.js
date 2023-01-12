@@ -19,7 +19,7 @@ var mongoose = require('mongoose')
 // app.use(bodyParser.json())
 
 let corsOptions={
-    origin:'https://lolmadmovie.vercel.app/',
+    origin:'https://lolmadmovie.vercel.app',
     credentials:true
 }
 app.use(cors(corsOptions))
