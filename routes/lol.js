@@ -9,5 +9,7 @@ router.get('/hi', lmmController.hi);
 router.get('/ho', lmmController.ho);
 router.get('/find', lmmController.getAll);
 router.post('/pp', lmmController.create)
+router.delete('/delete/:id', lmmController.delete)
+router.get('/sex', lmmController.sex)
 
 module.exports = router;

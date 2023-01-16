@@ -9,7 +9,7 @@ require('./models/videoList')
 require('./models/user')
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var usersRouter = require('./routes/users');
 var lolRouter = require('./routes/lol')
 var playListRouter=require('./routes/playListRoutes');
 var userRouter=require('./routes/users')
@@ -70,7 +70,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 app.use('/', indexRouter)
 app.use('/lol', lolRouter)
 app.use('/playlist', playListRouter)

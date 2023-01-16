@@ -11,7 +11,7 @@ const LmmControl = {
     },
     fuckYou: (req, res) => {
         res.status(200).json({
-            "success": "i kill you"
+            "success": "i see you"
         })
     },
     kill: (req, res) => {
@@ -47,16 +47,30 @@ const LmmControl = {
                 res.status(201).json({message:'create schema success'})
             }
         })
+    },
+    delete:async (req,res)=>{
+
+
+        try{
+            // const id=mongoose.Types.ObjectId(req.params.id)
+            const id=req.params.id
+            // console.log(req.params.id)
+            const deleted=await Lmm.findByIdAndDelete({_id:id})
+            if(deleted){
+                return res.status(200).json({message:'Deleted Successfully', deleted})
+            }else{
+                return res.status(404).json({message:'not found', id:id})
+            }
+        }catch(err){
+            return res.status(500).json({message:'error'}, err)
+        }
+
+    },
+    sex:(req,res)=>{
+        const id=req.query.id
+        res.json({id})
     }
 }
 
-// router.get('/', (req, res) => {
-//     YourModel.find((err, data) => {
-//         if (err) {
-//             res.status(500).send(err);
-//         } else {
-//             res.status(200).json(data);
-//         }
-//     });
-// });
+
 module.exports = LmmControl;
