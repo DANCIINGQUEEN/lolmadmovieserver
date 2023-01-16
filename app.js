@@ -6,11 +6,13 @@ var logger = require('morgan');
 var cors=require('cors')
 require('./models/db')
 require('./models/videoList')
+require('./models/user')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var lolRouter = require('./routes/lol')
 var playListRouter=require('./routes/playListRoutes');
+var userRouter=require('./routes/users')
 
 var app = express();
 var mongoose = require('mongoose')
@@ -72,6 +74,7 @@ app.use('/users', usersRouter);
 app.use('/', indexRouter)
 app.use('/lol', lolRouter)
 app.use('/playlist', playListRouter)
+app.use('/user', userRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
