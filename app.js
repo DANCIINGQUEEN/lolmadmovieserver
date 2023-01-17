@@ -1,26 +1,23 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors=require('cors')
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors=require('cors')
 require('./models/db')
 require('./models/videoList')
 require('./models/user')
+require('./models/chat')
 
-var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
-var lolRouter = require('./routes/lol')
-var playListRouter=require('./routes/playListRoutes');
-var userRouter=require('./routes/users')
+const indexRouter = require('./routes/index');
+const lolRouter = require('./routes/lol')
+const playListRouter=require('./routes/playListRoutes');
+const userRouter=require('./routes/users')
+const chatRouter=require('./routes/chatRouters')
 
-var app = express();
-var mongoose = require('mongoose')
-// var bodyParser = require('body-parser');
+const app = express();
+const mongoose = require('mongoose')
 
-//body-parser setup
-// app.use(bodyParser.urlencoded({extended:true}))
-// app.use(bodyParser.json())
 
 let corsOptions={
     origin:[
@@ -35,19 +32,12 @@ app.use(cors(corsOptions))
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-// app.use('/lol', (req,res)=>{
-//     res.header('Access-Control-Allow-Origin', '*');
-//
-//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-//
-// })
-
 //mongoose setup
 mongoose.Promise = global.Promise
 dbUrl = 'mongodb+srv://my_atlas_user:fpemffj159357@cluster0.riaea.mongodb.net/LolMadMovie'
 mongoose.connect(dbUrl, {useNewUrlParser: true})
 mongoose.set('strictQuery', false)
-var db = mongoose.connection
+const db = mongoose.connection
 
 db.on('connected', function () {
     console.log('server connected')
@@ -70,11 +60,11 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/users', usersRouter);
 app.use('/', indexRouter)
 app.use('/lol', lolRouter)
 app.use('/playlist', playListRouter)
 app.use('/user', userRouter)
+app.use('/chat', chatRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
