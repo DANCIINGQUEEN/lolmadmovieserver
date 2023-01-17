@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const lolMadMovie = mongoose.model('LolMadMovie')
+// const lolMadMovie = mongoose.model('LolMadMovie')
+const titleAndContent = mongoose.model('titleAndContent')
 
 
 const LmmControl = {
@@ -9,7 +10,7 @@ const LmmControl = {
         })
     },
     getAll: (req, res) => {
-        lolMadMovie.find((err, data) => {
+        titleAndContent.find((err, data) => {
                 if (err) {
                     res.status(500).send(err)
                 } else {
@@ -19,9 +20,9 @@ const LmmControl = {
         )
     },
     create:(req,res)=>{
-        lolMadMovie.create({
-            date:req.body.date,
-            name:req.body.name
+        titleAndContent.create({
+            title:req.body.title,
+            content:req.body.content
         },(err)=>{
             if(err)res.status(400).json(err)
             else{
@@ -32,7 +33,7 @@ const LmmControl = {
     delete:async (req,res)=>{
         try{
             const id=req.params.id
-            const deleted=await lolMadMovie.findByIdAndDelete({_id:id})
+            const deleted=await titleAndContent.findByIdAndDelete({_id:id})
             if(deleted){
                 return res.status(200).json({message:'Deleted Successfully', deleted})
             }else{
