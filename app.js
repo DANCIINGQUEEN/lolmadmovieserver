@@ -4,13 +4,13 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors=require('cors')
-require('./models/db')
+require('./models/memo')
 require('./models/videoList')
 require('./models/user')
 require('./models/chat')
 
 const indexRouter = require('./routes/index');
-const lolRouter = require('./routes/lol')
+const lolRouter = require('./routes/memoRouters')
 const playListRouter=require('./routes/playListRoutes');
 const userRouter=require('./routes/users')
 const chatRouter=require('./routes/chatRouters')
