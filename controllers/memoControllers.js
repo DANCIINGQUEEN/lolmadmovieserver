@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-// const lolMadMovie = mongoose.model('LolMadMovie')
 const memo = mongoose.model('memo')
 
 
@@ -42,6 +41,12 @@ const memoControl = {
         }catch(err){
             return res.status(500).json({message:'error'}, err)
         }
+    },
+    update:(req,res)=>{
+        memo.findByIdAndUpdate(req.params.id, {$set:req.body}, (err, memo)=>{
+            if(err) res.json(err)
+            else res.json(memo)
+        })
     }
 }
 

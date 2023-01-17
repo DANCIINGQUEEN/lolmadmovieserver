@@ -11,7 +11,7 @@ require('./models/chat')
 
 const indexRouter = require('./routes/index');
 const lolRouter = require('./routes/memoRouters')
-const playListRouter=require('./routes/playListRoutes');
+const playListRouter=require('./routes/playListRouters');
 const userRouter=require('./routes/users')
 const chatRouter=require('./routes/chatRouters')
 
@@ -61,7 +61,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter)
-app.use('/lol', lolRouter)
+app.use('/memo', lolRouter)
 app.use('/playlist', playListRouter)
 app.use('/user', userRouter)
 app.use('/chat', chatRouter)
